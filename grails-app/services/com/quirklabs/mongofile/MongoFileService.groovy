@@ -168,7 +168,7 @@ class MongoFileService {
 
 		GridFSInputFile gInputFile = gfs.createFile(inputStream)
 		gInputFile.setFilename(filename)
-		gInputFile.setContentType(getMimeType(fileContents))
+		gInputFile.setContentType(getMimeType(inputStream))
 		if (metaData) {
 			DBObject mD = new BasicDBObject()
 			metaData.each { mD.put(it.key.toString(), it.value) }
@@ -294,6 +294,13 @@ class MongoFileService {
 
 		return "application/octet-stream"
 	}
+
+    public String getMimeType(InputStream stream) {
+        MagicMimeMimeDetector detector = new MagicMimeMimeDetector()
+        Collection mimeTypes = detector.getMimeTypesInputStream(stream)
+        if (mimeTypes) return mimeTypes.iterator().getAt(0).toString()
+        return "application/octet-stream"
+    }
 	
 	public void deliverFile(HttpServletResponse response, boolean asAttachment, Class domainClass, Long id, String fieldName = '') {
         GridFSDBFile file = getFile(domainClass, id, fieldName)
