@@ -1,6 +1,20 @@
 MongoFile Plugin
 ================
 
+NOTE:
+
+    This is a fix release for the original plugin by Craig Raw.
+
+    Fixes:
+        - bug on MongoFileService.saveFileStream
+        - Change MultiPartFile for CommonsMultiPartFile
+
+    This release works with grails 2.2.+ only.
+
+    Eduardo Díaz
+
+
+
 The MongoFile plugin add methods to domain instances to save, retrieve and delete associated files from a MongoDB file store. The plugin can also write a file out to an HTTP response. This plugin depends on the MongoDB plugin.
 
 Configuration
