@@ -2,7 +2,7 @@ package com.quirklabs.mongofile
 
 import com.mongodb.gridfs.GridFS
 import eu.medsea.mimeutil.detector.MagicMimeMimeDetector
-import org.springframework.web.multipart.MultipartFile
+import org.springframework.web.multipart.commons.CommonsMultipartFile
 import com.mongodb.gridfs.GridFSInputFile
 import com.mongodb.DBObject
 import com.mongodb.gridfs.GridFSDBFile
@@ -30,7 +30,7 @@ class MongoFileService {
 	 * @param fieldName optional field name
 	 * @return GridFSFile new file
 	 */
-	public GridFSFile saveFile(MultipartFile file, Class domainClass, Long id, String fieldName = '') {
+	public GridFSFile saveFile(CommonsMultipartFile file, Class domainClass, Long id, String fieldName = '') {
 	    String bucket = getBucket(domainClass, fieldName)
 	    
         deleteFile(domainClass, id, fieldName)
@@ -80,7 +80,7 @@ class MongoFileService {
 	 * @param metaData any metadata to save
 	 * @return GridFSFile new file
 	 */
-	public GridFSFile saveFileMultipart(String bucket, MultipartFile file, String filename = null, Map metaData = null) {
+	public GridFSFile saveFileMultipart(String bucket, CommonsMultipartFile file, String filename = null, Map metaData = null) {
 		GridFS gfs = getGridfs(bucket)
 
 		// get content type

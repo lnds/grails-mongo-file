@@ -32,12 +32,11 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        build(":tomcat:$grailsVersion",
-              ":release:2.0.2") {
+        build(":tomcat:$grailsVersion") {
             export = false
         }
         
-        runtime(":mongodb:1.0.0.RC3")
+        runtime(":mongodb:1.1.0.GA")
     }
 }
 
